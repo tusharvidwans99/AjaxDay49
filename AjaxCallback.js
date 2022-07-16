@@ -18,6 +18,7 @@ function makeAJAXCall(methodType,url,callback,async=true,data=null)
     //ready state 4 means connection closed
     //ready state 1 means connection has not yet been established
     //ready state 2 means connection is open
+    //when ready state reaches 3, means data is coming from the server
     //eventlistener will keep gettting calls on state change
     //this is event listener and it will be always called whenever there is change in status of xhr.
     xhr.onreadystatechange= function(){
@@ -26,6 +27,8 @@ function makeAJAXCall(methodType,url,callback,async=true,data=null)
         //if connection is closed and status is 200 or 201 then callback method is called
         if(xhr.readyState===4)
         {
+            //200 is code for getting data
+            //201 is code for creating data
             if(xhr.status===200||xhr.status===201)
             {
                 //using callback function, i  am able to reuse code
